@@ -1,0 +1,43 @@
+server:
+  port: 8088
+
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/exam_service?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: 12345678
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 12345678
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 15MB
+
+logging:
+  level:
+    org.springframework.web: INFO
+    priv.ana.mapper: debug
+    org.mybatis: debug
+    com.baomidou.mybatisplus: debug
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: exam-producer-group
+    sendMessageTimeout: 10000
+    retryTimesWhenSendFailed: 2
+    retryTimesWhenSendAsyncFailed: 2
+    maxMessageSize: 4096
+    compressMessageBodyThreshold: 4096
+    retryNextServer: false
+  consumer:
+    group: exam-consumer-group
