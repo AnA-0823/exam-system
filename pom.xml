@@ -14,9 +14,10 @@
     <name>exam-system</name>
     <description>exam-system</description>
     <modules>
-        <module>api-gateway</module>
+        <module>exam-gateway</module>
         <module>exam-system-common</module>
         <module>exam-service</module>
+        <module>user-service</module>
     </modules>
     <packaging>pom</packaging>
     <url/>
