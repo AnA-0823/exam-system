@@ -1,10 +1,11 @@
-package priv.ana.core.constant;
+package priv.ana.core.enums;
 
 import lombok.Getter;
 
 @Getter
 public enum ResponseStatus {
     SUCCESS(200, "success"),
+    BAD_REQUEST(400, "bad request"),
     UNAUTHORIZED(401, "unauthorized"),
     INTERNAL_SERVER_ERROR(500, "internal server error"),
     ;
