@@ -1,7 +1,7 @@
 package priv.ana.core.web.domain;
 
 import lombok.Data;
-import priv.ana.core.constant.ResponseStatus;
+import priv.ana.core.enums.ResponseStatus;
 
 import java.io.Serializable;
 

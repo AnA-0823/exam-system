@@ -2,17 +2,16 @@ package priv.ana.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQClientException;
-import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
-import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import priv.ana.core.constant.ResponseStatus;
+import priv.ana.core.enums.ResponseStatus;
 import priv.ana.core.web.domain.Response;
 
 import java.time.Duration;
@@ -72,6 +71,12 @@ public class TestController {
             return Response.success(details);
         }
         return Response.fail(ResponseStatus.INTERNAL_SERVER_ERROR, "依赖检查失败", details);
+    }
+
+    @GetMapping("/test")
+    public Response<Void> test(@RequestHeader("User-Id") String userId, @RequestHeader("User-Role") String userRole) {
+        log.info("userId:{},userRole:{}", userId, userRole);
+        return Response.success();
     }
 
     private Map<String, Object> checkRedis() {
