@@ -18,6 +18,7 @@
         <module>exam-system-common</module>
         <module>exam-service</module>
         <module>user-service</module>
+        <module>questions-service</module>
     </modules>
     <packaging>pom</packaging>
     <url/>
