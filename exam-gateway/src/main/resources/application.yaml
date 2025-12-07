@@ -23,6 +23,14 @@ spring:
               filters:
                 - StripPrefix=1
                 - name: AuthFilterFactory
+
+            - id: questions-service
+              uri: lb://questions-service
+              predicates:
+                - Path=/questions-service/**
+              filters:
+                - StripPrefix=1
+                - name: AuthFilterFactory
   data:
     redis:
       host: 127.0.0.1
