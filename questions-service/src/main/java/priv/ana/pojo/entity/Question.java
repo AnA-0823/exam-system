@@ -3,7 +3,6 @@ package priv.ana.pojo.entity;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.Data;
-import priv.ana.pojo.dto.QuestionInExamDTO;
 import priv.ana.pojo.dto.QuestionOptionDTO;
 
 import java.time.LocalDateTime;

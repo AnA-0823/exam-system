@@ -1,11 +1,13 @@
 package priv.ana.core.web.domain;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import priv.ana.core.enums.ResponseStatus;
 
 import java.io.Serializable;
 
 @Data
+@NoArgsConstructor
 public class Response<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 

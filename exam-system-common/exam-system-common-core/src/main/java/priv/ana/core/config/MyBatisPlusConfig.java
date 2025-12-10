@@ -1,4 +1,4 @@
-package priv.ana.config;
+package priv.ana.core.config;
 
 
 import com.baomidou.mybatisplus.annotation.DbType;
