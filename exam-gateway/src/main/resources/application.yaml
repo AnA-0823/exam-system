@@ -31,6 +31,14 @@ spring:
               filters:
                 - StripPrefix=1
                 - name: AuthFilterFactory
+
+            - id: summary-service
+              uri: lb://summary-service
+              predicates:
+                - Path=/summary-service/**
+              filters:
+                - StripPrefix=1
+                - name: AuthFilterFactory
   data:
     redis:
       host: 127.0.0.1
