@@ -30,7 +30,7 @@ public class GradesController {
     }
 
     @GetMapping
-    public Response<PaginationResponse<StudentGradeSummaryResponseVO>> getGrades(Long page, Long size, @RequestHeader String userId) {
+    public Response<PaginationResponse<StudentGradeSummaryResponseVO>> getGrades(Long page, Long size, @RequestHeader("User-Id") String userId) {
         PaginationResponse<StudentGradeSummaryResponseVO> grades = gradesService.getGrades(page, size, Long.valueOf(userId));
         return Response.success(grades);
     }

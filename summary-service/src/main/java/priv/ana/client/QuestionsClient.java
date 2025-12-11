@@ -7,7 +7,7 @@ import priv.ana.common.PaginationResponse;
 import priv.ana.core.web.domain.Response;
 import priv.ana.core.web.domain.vos.questionServiceVO.QuestionResponseVO;
 
-@FeignClient(name = "questions-service")
+@FeignClient(name = "questions-service", path = "/questions")
 public interface QuestionsClient {
 
     /**

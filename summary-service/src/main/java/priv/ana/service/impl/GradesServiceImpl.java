@@ -1,6 +1,7 @@
 package priv.ana.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import priv.ana.core.web.domain.dtos.examServiceDTO.UserAnswerRecordDTO;
 import priv.ana.core.web.domain.dtos.examServiceDTO.UserAnswersRecordDTO;
 import priv.ana.core.web.domain.vos.questionServiceVO.QuestionResponseVO;
 import priv.ana.enums.AnswerResult;
+import priv.ana.exception.EmptyResultException;
 import priv.ana.mapper.GradesMapper;
 import priv.ana.pojo.entity.GradeStatistic;
 import priv.ana.pojo.vo.GradeStatisticsResponseVO;
@@ -23,6 +25,7 @@ import priv.ana.service.GradesService;
 import java.util.List;
 
 @Service
+@Slf4j
 public class GradesServiceImpl implements GradesService {
 
     @Autowired
@@ -40,7 +43,10 @@ public class GradesServiceImpl implements GradesService {
         LambdaQueryWrapper<GradeStatistic> warpper = new LambdaQueryWrapper<>();
         warpper.eq(GradeStatistic::getExamId, examId);
         GradeStatistic gradeStatistic = gradesMapper.selectOne(warpper);
-
+        if(gradeStatistic == null){
+            log.info("examid:{},未找到考试记录", examId);
+            return null;
+        }
         GradeStatisticsResponseVO gradeStatisticsResponseVO = new GradeStatisticsResponseVO();
         BeanUtils.copyProperties(gradeStatistic, gradeStatisticsResponseVO);
         return gradeStatisticsResponseVO;
@@ -51,6 +57,9 @@ public class GradesServiceImpl implements GradesService {
         //根据recordId,查询exam-records表，装填StudentAnswerDetailResponseVO
         StudentAnswerDetailResponseVO studentAnswerDetailResponseVO = new StudentAnswerDetailResponseVO();
         GradeStatistic gradeStatistic = gradesMapper.selectById(recordId);
+        if(gradeStatistic == null){
+           throw new EmptyResultException("未找到考试记录");
+        }
         BeanUtils.copyProperties(gradeStatistic, studentAnswerDetailResponseVO);
         //根据examId，查询quesitons表,获取题目信息
         List<QuestionResponseVO> questionResponseVOS = questionsClient.getQuestions(0L, 10086L, gradeStatistic.getExamId()).getData().getRecords();

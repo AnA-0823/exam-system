@@ -8,7 +8,7 @@ import priv.ana.core.web.domain.Response;
 import priv.ana.core.web.domain.dtos.examServiceDTO.UserAnswersRecordDTO;
 import priv.ana.pojo.vo.StudentGradeSummaryResponseVO;
 
-@FeignClient(name = "exam-service")
+@FeignClient(name = "exam-service", path = "/exams")
 public interface ExamClient {
 
     /**
@@ -16,7 +16,7 @@ public interface ExamClient {
      * @param recordId
      * @return
      */
-    @GetMapping("/exams/answersRecord/{examId}")
+    @GetMapping("/answersRecord/{examId}")
     public Response<UserAnswersRecordDTO> getAnswersRecord(@PathVariable Long recordId);
 
     /**
@@ -26,6 +26,6 @@ public interface ExamClient {
      * @param studentId
      * @return
      */
-    @GetMapping("/exams/grades/{studentId}")
+    @GetMapping("/grades/{studentId}")
     public Response<PaginationResponse<StudentGradeSummaryResponseVO>> getGrades(@PathVariable Long page, @PathVariable Long size, @PathVariable Long studentId);
 }

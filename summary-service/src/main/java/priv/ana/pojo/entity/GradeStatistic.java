@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * 考试成绩统计实体
  */
 @Data
-@TableName(value = "exam_grade_statistics", autoResultMap = true)
+@TableName(value = "grade_statistics", autoResultMap = true)
 public class GradeStatistic {
     /**
      * 统计记录ID，主键
