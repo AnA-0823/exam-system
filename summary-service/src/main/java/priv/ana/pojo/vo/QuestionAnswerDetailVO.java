@@ -1,8 +1,8 @@
 package priv.ana.pojo.vo;
 
 import lombok.Data;
+import priv.ana.core.web.domain.dtos.questionServiceDTO.QuestionOptionDTO;
 import priv.ana.enums.AnswerResult;
-import priv.ana.pojo.dto.QuestionOptionDTO;
 
 import java.util.List;
 

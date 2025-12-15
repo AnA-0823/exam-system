@@ -24,7 +24,7 @@ public class UserAnswerRecordDTO {
      */
     private Double score;
     /**
-     * 学生答案 (JSON字符串或简单文本)
+     * 学生答案
      */
     private String userAnswer;
 }

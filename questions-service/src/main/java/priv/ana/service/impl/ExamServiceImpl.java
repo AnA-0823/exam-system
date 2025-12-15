@@ -22,6 +22,7 @@ import priv.ana.pojo.vo.QuestionResponseVO;
 import priv.ana.service.ExamService;
 import priv.ana.service.QuestionService;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class ExamServiceImpl implements ExamService {
             QuestionDetailResponseVO questionDetailResponseVO = new QuestionDetailResponseVO();
             BeanUtils.copyProperties(questionResponseVO, questionDetailResponseVO);
             questionDetailResponseVOS.add(questionDetailResponseVO);
-        });;
+        });
         // 将试卷详情响应VO转换为学生试卷详情响应VO
         ExamDetailResponseVO examDetailResponseVO = new ExamDetailResponseVO();
         BeanUtils.copyProperties(exam, examDetailResponseVO);
@@ -82,12 +83,21 @@ public class ExamServiceImpl implements ExamService {
 
         Exam exam = new Exam();
         BeanUtils.copyProperties(request, exam);
+        Exam exam1 = examMapper.selectById(examId);
+        // 判断考试是否已开始,若开始则不允许修改（弥补冗余设计的缺陷）
+        if(exam1.getStartTime().isBefore(LocalDateTime.now())){
+            throw new IllegalArgumentException("该考试已开始，不能修改");
+        }
         examMapper.update(exam, wrapper);
     }
 
     @Override
     @Transactional
     public void deleteExam(Long examId) {
+        Exam exam = examMapper.selectById(examId);
+        if(exam.getStartTime().isBefore(LocalDateTime.now())){
+            throw new IllegalArgumentException("该考试已开始，不能删除");
+        }
         questionService.deleteQuestionsByExamId(examId);
         int i = examMapper.deleteById(examId);
         if(i==0){

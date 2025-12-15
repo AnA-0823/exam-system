@@ -1,27 +1,22 @@
-package priv.ana.pojo.vo;
+package priv.ana.core.web.domain.dtos.summaryServiceDTO;
 
 import lombok.Data;
-import priv.ana.core.web.domain.dtos.summaryServiceDTO.ScoreDistributionEntryDTO;
 
 import java.util.List;
 
 /**
- * 成绩统计响应 VO
+ * 考试成绩统计创建请求 DTO
  */
 @Data
-public class GradeStatisticsResponseVO {
+public class GradeStatisticsCreateRequestDTO {
+    /**
+     * 关联的试卷ID
+     */
+    private Long examId;
     /**
      * 平均分
      */
     private Double averageScore;
-    /**
-     * 试卷ID
-     */
-    private Long examId;
-    /**
-     * 试卷标题
-     */
-    private String examTitle;
     /**
      * 最高分
      */
@@ -31,7 +26,7 @@ public class GradeStatisticsResponseVO {
      */
     private Integer numParticipants;
     /**
-     * 分数分布列表
+     * JSON字符串，存储分数分布
      */
     private List<ScoreDistributionEntryDTO> scoreDistribution;
 }

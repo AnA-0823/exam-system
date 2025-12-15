@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `answer_records` (
                                                 `id` BIGINT NOT NULL AUTO_INCREMENT COMMENT '答题记录ID，主键',
                                                 `record_id` BIGINT NOT NULL COMMENT '关联的考试记录ID',
                                                 `question_id` BIGINT NOT NULL COMMENT '关联的题目ID',
-                                                `user_answer` JSON NULL COMMENT '学生提交的答案 (JSON字符串或简单文本)',
+                                                `user_answer` varchar(100) NULL COMMENT '学生提交的答案',
                                                 `score` DOUBLE NULL COMMENT '该题目得分 (如果已评卷)',
                                                 `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
                                                 `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',

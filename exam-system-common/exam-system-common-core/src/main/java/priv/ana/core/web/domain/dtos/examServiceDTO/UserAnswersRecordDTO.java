@@ -1,5 +1,6 @@
 package priv.ana.core.web.domain.dtos.examServiceDTO;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -9,5 +10,6 @@ import java.util.List;
  */
 @Data
 public class UserAnswersRecordDTO {
-    List<UserAnswerRecordDTO> userAnswerRecordDTOS;
+   @JsonProperty("userAnswerRecordDTOS")
+   private List<UserAnswerRecordDTO> userAnswerRecordDTOS;
 }

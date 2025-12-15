@@ -1,7 +1,7 @@
 package priv.ana.core.web.domain.vos.quesitonsVO;
 
 import lombok.Data;
-import priv.ana.core.web.domain.dtos.questionsDTO.QuestionOptionDTO;
+import priv.ana.core.web.domain.dtos.questionServiceDTO.QuestionOptionDTO;
 
 import java.util.List;
 

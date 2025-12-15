@@ -1,11 +1,11 @@
 package priv.ana.handler;
 
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import priv.ana.core.enums.ResponseStatus;
 import priv.ana.core.web.domain.Response;
-import priv.ana.exception.EmptyResultException;
 
 @RestControllerAdvice
 @Slf4j

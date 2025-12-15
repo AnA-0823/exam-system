@@ -5,9 +5,12 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import io.micrometer.core.instrument.Statistic;
 import lombok.Data;
+import priv.ana.core.web.domain.dtos.summaryServiceDTO.ScoreDistributionEntryDTO;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 考试成绩统计实体
@@ -25,6 +28,10 @@ public class GradeStatistic {
      */
     private Long examId;
     /**
+     * 试卷标题
+     */
+    private String examTitle;
+    /**
      * 平均分
      */
     private Double averageScore;
@@ -35,12 +42,12 @@ public class GradeStatistic {
     /**
      * 参与考试人数
      */
-    private Long numParticipants;
+    private Integer numParticipants;
     /**
      * JSON字符串，存储分数分布，例如 { '0-60': 10, '60-70': 20, ... }
      */
-    @TableField(typeHandler = JacksonTypeHandler.class)
-    private String scoreDistribution;
+    @TableField(value = "score_distribution", typeHandler = JacksonTypeHandler.class)
+    private List<ScoreDistributionEntryDTO> scoreDistribution;
     /**
      * 创建时间
      */
